@@ -1,5 +1,6 @@
 package com.rsschool.quiz.screens.quiz
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,12 @@ class QuizFragment : Fragment() {
     private var questionNumber = 0
     private var _binding: FragmentQuizBinding? = null
     private val binding get() = _binding!!
+    private var listener: OnQuizFragmentListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as OnQuizFragmentListener
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +33,6 @@ class QuizFragment : Fragment() {
         val args = QuizFragmentArgs.fromBundle(requireArguments())
         questions = args.questions.toMutableList()
         questionNumber = args.questionNumber
-        setTheme()
         _binding = FragmentQuizBinding.inflate(inflater, container, false)
         visibleButton()
         setQuestionFragment(questions[questionNumber].answer)
@@ -42,6 +48,7 @@ class QuizFragment : Fragment() {
             toolbar.setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.item_test -> {
+                        setTheme(-1)
                         view?.findNavController()
                             ?.navigate(QuizFragmentDirections.actionQuizFragmentToStartFragment())
                         true
@@ -75,6 +82,7 @@ class QuizFragment : Fragment() {
 
             // Кнопка next
             nextButton.setOnClickListener {
+                setTheme(-1)
                 if (questionNumber == questions.size - 1) {
                     view?.findNavController()?.navigate(
                         QuizFragmentDirections.actionQuizFragmentToResultFragment(
@@ -84,10 +92,11 @@ class QuizFragment : Fragment() {
                 } else {
                     questionNumber++
                     view?.findNavController()?.navigate(
-                       QuizFragmentDirections.actionQuizFragmentSelf(
+                        QuizFragmentDirections.actionQuizFragmentSelf(
                             questions.toTypedArray(), questionNumber
                         )
                     )
+                    setTheme(questionNumber)
                 }
             }
         }
@@ -131,37 +140,13 @@ class QuizFragment : Fragment() {
                     questions.toTypedArray(), questionNumber
                 )
             )
+            setTheme(questionNumber)
         }
     }
 
     //выбор темы
-    private fun setTheme() {
-        val theme: Int
-        val color: Int
-        when (questionNumber) {
-            0 -> {
-                theme = R.style.Theme_Quiz_First
-                color = R.color.quiz_first_statusBarColor
-            }
-            1 ->{
-                theme = R.style.Theme_Quiz_Second
-                color = R.color.quiz_second_statusBarColor
-            }
-            2 -> {
-                theme = R.style.Theme_Quiz_Three
-                color = R.color.quiz_three_statusBarColor
-            }
-            3 -> {
-                theme = R.style.Theme_Quiz_Fourth
-                color = R.color.quiz_fourth_statusBarColor
-            }
-            else -> {
-                theme = R.style.Theme_Quiz_Fifth
-                color = R.color.quiz_fifth_statusBarColor
-            }
-        }
-        requireContext().setTheme(theme)
-        requireActivity().window.statusBarColor = ContextCompat.getColor(requireActivity(), color)
+    private fun setTheme(questionNumber:Int) {
+        listener?.onQuizFragmentListener(questionNumber)
     }
 
     //видимость кнопок
@@ -175,5 +160,12 @@ class QuizFragment : Fragment() {
         if (questionNumber == questions.size - 1)
             binding.nextButton.text = getString(R.string.button_next2)
     }
+
+    interface OnQuizFragmentListener {
+        fun onQuizFragmentListener(questionNumber: Int)
+    }
+
+
 }
+
 

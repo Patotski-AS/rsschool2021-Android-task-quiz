@@ -14,7 +14,7 @@
         <item name="colorSecondary">@color/deep_orange_100</item>
         <item name="colorSecondaryVariant">@color/deep_orange_100_light</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/deep_orange_100_dark</item>
+        <item name="android:statusBarColor">@color/quiz_first_statusBarColor</item>
     </style>
 
     <style name="Theme.Quiz.Second" parent="Theme.Quiz">
@@ -24,7 +24,7 @@
         <item name="colorSecondary">#9e9d24</item>
         <item name="colorSecondaryVariant">#d2ce56</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">#8c9900</item>
+        <item name="android:statusBarColor">@color/quiz_second_statusBarColor</item>
     </style>
 
     <style name="Theme.Quiz.Three" parent="Theme.Quiz">
@@ -34,7 +34,7 @@
         <item name="colorSecondary">#691b99</item>
         <item name="colorSecondaryVariant">#9b4dcb</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">#883997</item>
+        <item name="android:statusBarColor">@color/quiz_three_statusBarColor</item>
     </style>
 
     <style name="Theme.Quiz.Fourth" parent="Theme.Quiz">
@@ -44,7 +44,7 @@
         <item name="colorSecondary">#bf360c</item>
         <item name="colorSecondaryVariant">#f9683a</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">#b91400</item>
+        <item name="android:statusBarColor">@color/quiz_fourth_statusBarColor</item>
     </style>
 
     <style name="Theme.Quiz.Fifth" parent="Theme.Quiz">
@@ -54,7 +54,7 @@
         <item name="colorSecondary">#d32f2f</item>
         <item name="colorSecondaryVariant">#ff6659</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">#af4448</item>
+        <item name="android:statusBarColor">@color/quiz_fifth_statusBarColor</item>
     </style>
 
 </resources>

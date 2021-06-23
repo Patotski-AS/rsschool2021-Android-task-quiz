@@ -65,4 +65,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
     //JSON
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
+
+    implementation "androidx.preference:preference-ktx:1.1.1"
 }

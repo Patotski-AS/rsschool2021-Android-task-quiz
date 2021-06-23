@@ -1,5 +1,6 @@
 package com.rsschool.quiz.screens.start
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,7 +25,12 @@ class StartFragment : Fragment() {
     private var _binding: FragmentStartBinding? = null
     private val binding get() = _binding!!
     private lateinit var questions: List<Question>
+    private var listener: OnStartFragmentListener? = null
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as OnStartFragmentListener
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,8 +50,8 @@ class StartFragment : Fragment() {
             ActivityCompat.finishAffinity(requireActivity())
         }
 
-
         binding.buttonStart.setOnClickListener() {
+            setTheme()
             view?.findNavController()
                 ?.navigate(
                     StartFragmentDirections.actionStartFragmentToQuizFragment(
@@ -61,5 +67,16 @@ class StartFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    //выбор темы
+    private fun setTheme() {
+        listener?.onStartFragmentListener(0)
+    }
+
+    interface OnStartFragmentListener {
+        fun onStartFragmentListener(questionNumber: Int)
+    }
+
+
 
 }
