@@ -49,11 +49,17 @@ class StartFragment : Fragment() {
             view?.findNavController()
                 ?.navigate(
                     StartFragmentDirections.actionStartFragmentToQuizFragment(
-                         questions.shuffled().take(5).toTypedArray(),
+                        questions.shuffled().take(5).toTypedArray(),
                         0
                     )
                 )
         }
+
+        binding.buttonSettings.setOnClickListener {
+            view?.findNavController()
+                ?.navigate(StartFragmentDirections.actionStartFragmentToQuestionsFragment(questions.toTypedArray()))
+        }
+
         return binding.root
     }
 
