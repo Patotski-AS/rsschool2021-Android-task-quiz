@@ -7,11 +7,12 @@ import com.rsschool.quiz.R
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    private var currentTheme = TEAL
+    private var currentTheme = START_THEME
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        currentTheme = PreferenceManager.getDefaultSharedPreferences(this).getInt(KEY_THEME, TEAL)
+        currentTheme = PreferenceManager.getDefaultSharedPreferences(this).getInt(KEY_THEME, START_THEME)
+
         super.onCreate(savedInstanceState)
     }
 
@@ -35,6 +36,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     companion object {
         private const val KEY_THEME = "Theme"
-        private const val TEAL = R.style.Theme_Quiz
+        private const val START_THEME = R.style.Theme_Quiz
     }
 }
