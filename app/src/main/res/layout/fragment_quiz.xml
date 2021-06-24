@@ -19,6 +19,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="?android:colorPrimary"
             android:fitsSystemWindows="true"
             app:menu="@menu/options_menu"
             app:navigationContentDescription="Back to the previous question"
