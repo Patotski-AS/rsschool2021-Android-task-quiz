@@ -12,7 +12,6 @@ class StartFactory (
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        Log.i("MyLog", "MainActivityFactory")
         if (modelClass.isAssignableFrom(StartViewModel::class.java)) {
             return StartViewModel(repository, application) as T
         }

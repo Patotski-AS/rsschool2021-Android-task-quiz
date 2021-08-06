@@ -56,7 +56,6 @@ class ResultFragment : Fragment() {
                     .putExtra(Intent.EXTRA_TEXT, createMessage())
                 startActivity(intent)
             }
-
         }
         return binding.root
     }
@@ -86,27 +85,19 @@ class ResultFragment : Fragment() {
         return questions.filter { it.rightAnswer == it.answers?.get(it.answer) }.size
     }
 
-    
-
-
     private fun addSmile() {
-//        val background: Int
         val smile: Int = when ((rightAnswers() / ((questions.size).toDouble() / 100)).toInt()) {
             100 -> {
                 R.mipmap.ic_smile1
-    //                background = android.R.color.holo_green_dark
             }
             in 99 downTo 65 -> {
                 R.mipmap.ic_smile2
-    //                background = android.R.color.holo_blue_light
             }
             else -> {
                 R.mipmap.ic_smile3_foreground
-    //                background = android.R.color.holo_red_light
             }
         }
         binding.imageViewResult.setImageResource(smile)
-//        binding.frameLayoutResult.setBackgroundColor(background)
     }
 
 }
